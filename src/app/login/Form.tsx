@@ -1,24 +1,35 @@
-import React, { useState } from 'react';
-import Input from '@/components/common/Input';
-import Button from '@/components/common/Button';
-import useLogin from '@/hooks/useLogin';
+import React from "react";
+import Input from "@/components/common/Input";
+import Button from "@/components/common/Button";
+import useLogin from "@/hooks/useLogin";
+import { useForm } from "@/hooks/useForm";
 
 const LoginForm: React.FC = () => {
   const { login, loading } = useLogin();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const { values, handleChange, resetForm } = useForm({ username: "", password: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    login(username, password);
-    return
+    login(values.username, values.password);
+    resetForm()
   };
 
   return (
     <form onSubmit={handleSubmit} className="p-4">
-      <Input placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-      <Input placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <Button label={loading ? 'Logging in...' : 'Login'} onClick={handleSubmit} />
+      <Input
+        placeholder="Username"
+        name="username"
+        value={values.username}
+        onChange={handleChange}
+      />
+      <Input
+        placeholder="Password"
+        type="password"
+        name="password"
+        value={values.password}
+        onChange={handleChange}
+      />
+      <Button label={loading ? "Logging in..." : "Login"} onClick={handleSubmit} />
     </form>
   );
 };
