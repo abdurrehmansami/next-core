@@ -1,17 +1,22 @@
 // app/(main)/page.tsx
-'use client'; // Mark this as a Client Component
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
 import Form from './components/Form';
 import ResumePreview from './components/Resume/ResumePreview';
-import useResumeData from './hooks/useResumeData';
+import { useStoreActions } from 'easy-peasy';
+import { ResumeStoreModel } from './store/resumestore';
 
 const Home: React.FC = () => {
-  const { resumeData, updateResumeData } = useResumeData();
+  // const loadResume = useStoreActions((actions) => actions.loadResume);
+  const loadResume = useStoreActions((actions: ResumeStoreModel) => actions.loadResume);
+  useEffect(() => {
+    loadResume;
+  }, [loadResume]);
 
   return (
     <div className="flex min-h-screen p-8">
-      <Form resumeData={resumeData} updateResumeData={updateResumeData} />
-      <ResumePreview resumeData={resumeData} />
+      <Form />
+      <ResumePreview />
     </div>
   );
 };

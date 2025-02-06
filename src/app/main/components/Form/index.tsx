@@ -1,17 +1,24 @@
 // app/(main)/components/Form/index.tsx
+'use client';
 import React from 'react';
 import Section from './Section';
+import { useStoreActions, useStoreState } from 'easy-peasy';
+import {ResumeStoreModel} from '../../store/resumestore'
 import { ResumeData } from '@/types/resume';
+const Form: React.FC = () => {
+  // const resumeData = useStoreState((state) => state.resumeData);
+  // const saveResume = useStoreActions((actions) => actions.saveResume);
+  // // Use typed hooks
+  const resumeData = useStoreState((state: ResumeStoreModel) => state.resumeData);
+  const saveResume = useStoreActions((actions: ResumeStoreModel) => actions.saveResume);
 
-interface FormProps {
-  resumeData: ResumeData;
-  updateResumeData: (section: keyof ResumeData, data: any) => void;
-}
-
-const Form: React.FC<FormProps> = ({ resumeData, updateResumeData }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    updateResumeData('personalInfo', { ...resumeData.personalInfo, [name]: value });
+    const updatedData: ResumeData = {
+      ...resumeData,
+      personalInfo: { ...resumeData.personalInfo, [name]: value },
+    };
+    saveResume(updatedData);
   };
 
   return (
