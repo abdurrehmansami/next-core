@@ -10,7 +10,9 @@ const Form: React.FC = () => {
   // const saveResume = useStoreActions((actions) => actions.saveResume);
   // // Use typed hooks
   const resumeData = useStoreState((state: ResumeStoreModel) => state.resumeData);
-  const saveResume = useStoreActions((actions: ResumeStoreModel) => actions.saveResume);
+  // const saveResume = useStoreActions((actions: ResumeStoreModel) => actions.saveResume);
+  const saveResume = useStoreActions<ResumeStoreModel>((actions) => actions.saveResume);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
