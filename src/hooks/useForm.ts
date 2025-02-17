@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type FormState = Record<string, any>;
+type FormState = Record<string, string | number | boolean>; // Restrict types
 
 export const useForm = <T extends FormState>(initialState: T) => {
   const [values, setValues] = useState<T>(initialState);
