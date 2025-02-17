@@ -1,19 +1,18 @@
 import React from "react";
-import Input from "@/components/common/Input";
-import Button from "@/components/common/Button";
-import useLogin from "@/hooks/useLogin";
-import logopng from "../../../public/assets/logo/logo.png"
-import { useForm } from "@/hooks/useForm";
+// import Input from "@/components/common/Input";
+// import Button from "@/components/common/Button";
+// import useLogin from "@/hooks/useLogin";
+// import { useForm } from "@/hooks/useForm";
 
 const LoginForm: React.FC = () => {
-  const { login, loading } = useLogin();
-  const { values, handleChange, resetForm } = useForm({ username: "", password: "" });
+  // const { login, loading } = useLogin();
+  // const { values, handleChange, resetForm } = useForm({ username: "", password: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    login(values.username, values.password);
-    resetForm()
-  };
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   login(values.username, values.password);
+  //   resetForm()
+  // };
 
   return (
     // <form onSubmit={handleSubmit} classNameName="p-4">
