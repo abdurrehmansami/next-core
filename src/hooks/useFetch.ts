@@ -7,7 +7,7 @@ import httpClient from "@/http/singleton/httpClient";
 export const useFetch = (url: string) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
